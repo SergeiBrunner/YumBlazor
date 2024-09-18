@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-YumBlazor-0047180e-bcc6-42ae-bae0-fcf683230c57</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.0-rc.1.24452.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0-rc.1.24452.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-rc.1.24451.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0-rc.1.24451.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Extensions\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repository\IRepository\" />
+    <Folder Include="VIewModels\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+</Project>
