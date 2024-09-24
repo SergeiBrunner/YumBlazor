@@ -56,4 +56,6 @@ namespace YumBlazor.Components.Account
         public void RedirectToCurrentPageWithStatus(string message, HttpContext context)
             => RedirectToWithStatus(CurrentPath, message, context);
     }
+
 }
+

@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Radzen;
 using YumBlazor.Components;
 using YumBlazor.Components.Account;
 using YumBlazor.Data;
 using YumBlazor.Repository;
 using YumBlazor.Repository.IRepository;
+using YumBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,11 +23,28 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
+builder.Services.AddRadzenComponents();
+builder.Services.AddSingleton<SharedStateService>();
 
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = IdentityConstants.ApplicationScheme;
         options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+    })
+    .AddFacebook(options =>
+    {
+        options.AppId = "1160092848406864";
+        options.AppSecret = "a5313a1337e6d9f137b37ed2a4f7cc45";
+    })
+    .AddMicrosoftAccount(options =>
+    {
+        options.ClientId = "0b170a00-4d7f-4eaf-8235-523dddedfec7";
+        options.ClientSecret = "2Na8Q~y8yNpt9iB0kZTyJj22fojeyzsrCbQPma0D";
+    })
+    .AddGoogle(options =>
+    {
+        options.ClientId = "602908572279-8dcb674plmqg25evmb0c20fo2naru06u.apps.googleusercontent.com";
+        options.ClientSecret = "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";
     })
     .AddIdentityCookies();
 
