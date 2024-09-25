@@ -62,9 +62,9 @@ else
                     <div class="col-7 text-end">
                         @if (OrderHeader.Status != SD.StatusCancelled && OrderHeader.Status != SD.StatusCompleted && _AuthenticationStateProvider.GetAuthenticationStateAsync().GetAwaiter().GetResult().User?.IsInRole(SD.Role_Admin) == true)
                         {
-                            <button class="btn btn-danger m-2 p-2" style="width:150px;" @onclick="()=>UpdateStatus(SD.StatusCancelled)">Cancelled</button>
+                            <button class="btn btn-danger m-2 p-2" style="width:150px;" @onclick="()=>UpdateStatus(SD.StatusCancelled)">Cancel Order</button>
 
-                            @if (OrderHeader.Status == SD.StatusPending)
+                            @if (OrderHeader.Status == SD.StatusApproved)
                             {
                                 <button class="btn btn-primary m-2 p-2" style="width:150px;" @onclick="()=>UpdateStatus(SD.StatusReadyForPickUp)" >Ready for Pickup</button>
                             }
@@ -105,7 +105,7 @@ else
 
     private async Task UpdateStatus(string newStatus)
     {
-        await _orderRepository.UpdateStatusAsync(Id, newStatus);
+        await _orderRepository.UpdateStatusAsync(Id, newStatus, "");
         _JS?.ToastrSuccess("Status updated successfully to " + newStatus);
     }
 }
